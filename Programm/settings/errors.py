@@ -1,0 +1,2 @@
+OK = 1
+ERROR_INPUT_DATA = 100
