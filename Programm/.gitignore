@@ -2,3 +2,7 @@ __pycache__/*
 .venv
 .idea
 design/__pycache__
+/*.pyc
+/*.cpython-313
+auxiliary_functions/__pycache__/
+draw/__pycache__/rotate_scene.cpython-313.pyc
