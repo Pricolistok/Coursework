@@ -3,7 +3,7 @@ from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import Qt, QTimer
 from design.design import Ui_MainWindow
-from auxiliary_functions.reader_from_file import reader_from_file
+from auxiliary_functions.reader_from_file import reader_from_file, print_all_data
 from classes.model_classes import *
 from draw.draw_faces import draw_faces_zbuffer
 from draw.rotate_scene import update_action
@@ -35,6 +35,7 @@ class MainApp(QMainWindow, Ui_MainWindow):
 
     def prepare_data(self):
         reader_from_file(filename=FILENAME, dots=self.dots, edges=self.edges, faces=self.faces)
+        # print_all_data(self.dots, self.edges, self.faces)
 
 
     def initCanvas(self):

@@ -5,4 +5,7 @@ design/__pycache__
 /*.pyc
 /*.cpython-313
 auxiliary_functions/__pycache__/
-draw/__pycache__/rotate_scene.cpython-313.pyc
+*.pyc
+
+# Игнорировать все папки __pycache__
+__pycache__/
