@@ -1,11 +1,12 @@
-__pycache__/*
-.venv
-.idea
-design/__pycache__
-/*.pyc
-/*.cpython-313
-auxiliary_functions/__pycache__/
-*.pyc
-
 # Игнорировать все папки __pycache__
 __pycache__/
+*/__pycache__/
+
+*.pyc
+*.pyo
+*.cpython-313*.pyc
+
+.venv/
+
+# IDE
+.idea/

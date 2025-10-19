@@ -1,38 +1,26 @@
 from PyQt5.QtGui import QPixmap, QImage
-from draw.camera import Camera
 from settings.consts import *
+import numpy as np
 
-# Создаем камеру
-camera = Camera(position=DEFAULT_CAMERA_POSITION,
-                look_at=DEFAULT_CAMERA_LOOK_AT,
-                up=DEFAULT_CAMERA_UP,
-                fov=DEFAULT_CAMERA_FOV)
 
-# === ПРОЕКЦИИ ===
-def project_vertex(dot, cam=camera, mode='perspective'):
-    """
-    mode: 'perspective' или 'orthographic'
-    """
+def project_vertex(dot, cam, mode='perspective'):
     x, y, z = cam.world_to_camera(dot)
     if mode == 'perspective':
-        d = 800  # расстояние до плоскости проекции
+        d = 800
         factor = d / (z + d + 1e-9)
         x_proj = x * factor
         y_proj = y * factor
-    else:  # ортографическая
+    else:
         x_proj, y_proj = x, y
-
     screen_x = int(x_proj * SCALE + X_OFFSET)
     screen_y = int(y_proj * SCALE + Y_OFFSET)
     return screen_x, screen_y, z
 
-# === Z-BUFFER ФУНКЦИИ ===
-def rasterize_face_zbuffer(face, zbuffer, img_array, color_rgb, proj_mode='perspective'):
-    verts = [project_vertex(v, mode=proj_mode) for v in face.vertices]
+
+def rasterize_face_zbuffer(face, zbuffer, img_array, proj_mode, cam):
+    verts = [project_vertex(v, cam=cam, mode=proj_mode) for v in face.vertices]
     xs, ys, zs = zip(*verts)
-    xs = np.array(xs)
-    ys = np.array(ys)
-    zs = np.array(zs)
+    xs, ys, zs = np.array(xs), np.array(ys), np.array(zs)
 
     min_y = max(int(np.min(ys)), 0)
     max_y = min(int(np.max(ys)), HEIGHT_CANVAS - 1)
@@ -70,10 +58,10 @@ def rasterize_face_zbuffer(face, zbuffer, img_array, color_rgb, proj_mode='persp
         z_line = np.interp(col_range, x_intersections, z_intersections)
         mask = z_line < zbuffer[y, col_range]
         zbuffer[y, col_range[mask]] = z_line[mask]
-        img_array[y, col_range[mask]] = color_rgb
+        img_array[y, col_range[mask]] = face.color
+
 
 def plot_thick_pixel(x, y, z, radius, zbuffer, img_array, color):
-    # используем векторизацию для ускорения
     xs = np.arange(-radius, radius + 1)
     ys = np.arange(-radius, radius + 1)
     for dx in xs:
@@ -82,17 +70,16 @@ def plot_thick_pixel(x, y, z, radius, zbuffer, img_array, color):
             continue
         for dy in ys:
             ny = y + dy
-            if 0 <= ny < HEIGHT_CANVAS and z < zbuffer[ny, nx]:
-                zbuffer[ny, nx] = z
-                img_array[ny, nx] = color
+            if 0 <= ny < HEIGHT_CANVAS:
+                if z < zbuffer[ny, nx]:
+                    zbuffer[ny, nx] = z
+                    img_array[ny, nx] = color
+
 
 def rasterize_line_zbuffer(x0, y0, z0, x1, y1, z1, zbuffer, img_array, color_rgb, radius=DEFAULT_EDGE_THICKNESS):
-    dx = abs(x1 - x0)
-    dy = abs(y1 - y0)
-    dz = z1 - z0
+    dx, dy, dz = abs(x1 - x0), abs(y1 - y0), z1 - z0
     x, y = x0, y0
-    sx = 1 if x0 < x1 else -1
-    sy = 1 if y0 < y1 else -1
+    sx, sy = (1 if x0 < x1 else -1), (1 if y0 < y1 else -1)
 
     if dx > dy:
         err = dx / 2
@@ -117,26 +104,24 @@ def rasterize_line_zbuffer(x0, y0, z0, x1, y1, z1, zbuffer, img_array, color_rgb
                 x += sx
                 err += dy
 
-# === ОТРИСОВКА ВСЕЙ СЦЕНЫ ===
-def draw_faces_zbuffer(label_field, faces, edge_thickness=DEFAULT_EDGE_THICKNESS,
-                       fill_color=DEFAULT_FILL_COLOR, edge_color=DEFAULT_EDGE_COLOR,
+
+def draw_faces_zbuffer(label_field, faces, cam, edge_thickness=DEFAULT_EDGE_THICKNESS,
                        proj_mode='perspective'):
     image = QImage(WIDTH_CANVAS, HEIGHT_CANVAS, QImage.Format_RGB32)
     img_array = np.zeros((HEIGHT_CANVAS, WIDTH_CANVAS, 3), dtype=np.uint8)
     zbuffer = np.full((HEIGHT_CANVAS, WIDTH_CANVAS), np.inf)
 
     for face in faces:
-        rasterize_face_zbuffer(face, zbuffer, img_array, fill_color, proj_mode)
+        rasterize_face_zbuffer(face, zbuffer, img_array, proj_mode, cam)
 
     for face in faces:
-        verts = [project_vertex(v, mode=proj_mode) for v in face.vertices]
+        verts = [project_vertex(v, cam=cam, mode=proj_mode) for v in face.vertices]
         n = len(verts)
         for i in range(n):
             x0, y0, z0 = verts[i]
             x1, y1, z1 = verts[(i + 1) % n]
-            rasterize_line_zbuffer(x0, y0, z0, x1, y1, z1, zbuffer, img_array, edge_color, radius=edge_thickness)
+            rasterize_line_zbuffer(x0, y0, z0, x1, y1, z1, zbuffer, img_array, DEFAULT_EDGE_COLOR, radius=edge_thickness)
 
-    # копирование в QImage
     image_bits = image.bits()
     image_bits.setsize(WIDTH_CANVAS * HEIGHT_CANVAS * 4)
     img_rgba = np.zeros((HEIGHT_CANVAS, WIDTH_CANVAS, 4), dtype=np.uint8)
@@ -145,3 +130,11 @@ def draw_faces_zbuffer(label_field, faces, edge_thickness=DEFAULT_EDGE_THICKNESS
     np.copyto(np.frombuffer(image_bits, np.uint8).reshape((HEIGHT_CANVAS, WIDTH_CANVAS, 4)), img_rgba)
 
     label_field.setPixmap(QPixmap.fromImage(image))
+
+
+def draw_scene_with_objects(label_field, faces, cam, objects=[]):
+    all_faces = faces.copy()
+    for obj in objects:
+        all_faces.extend(obj.transformed_faces())
+
+    draw_faces_zbuffer(label_field, all_faces, cam)

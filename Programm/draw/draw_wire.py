@@ -28,7 +28,7 @@ def draw_wire_model(image: QImage, label_field, edges):
 
 def anim_rotate_wire_model(image: QImage, label_field, edges):
     tmp_edges = deepcopy(edges)
-    angle = 60  # можно сделать анимацию позже с таймером
+    angle = 60
 
     for edge in tmp_edges:
         edge.start_dot.x, edge.start_dot.y, edge.start_dot.z = rotate_dot(

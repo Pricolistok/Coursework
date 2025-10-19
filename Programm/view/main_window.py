@@ -5,8 +5,11 @@ from PyQt5.QtCore import Qt, QTimer
 from design.design import Ui_MainWindow
 from auxiliary_functions.reader_from_file import reader_from_file, print_all_data
 from classes.model_classes import *
-from draw.draw_faces import draw_faces_zbuffer
+from draw.draw_faces import draw_scene_with_objects
 from draw.rotate_scene import update_action
+from draw.camera import Camera
+from classes.scene_object import SceneObject
+import numpy as np
 
 
 class MainApp(QMainWindow, Ui_MainWindow):
@@ -18,11 +21,19 @@ class MainApp(QMainWindow, Ui_MainWindow):
         self.edges: list[Edge] = []
         self.faces: list[Face] = []
         self.pressed_keys = set()
+        self.car: SceneObject = None
+
+        self.camera = Camera(
+            position=DEFAULT_CAMERA_POSITION,
+            target=DEFAULT_CAMERA_LOOK_AT,
+            up=DEFAULT_CAMERA_UP,
+            fov=DEFAULT_CAMERA_FOV
+        )
 
         self.initStart()
 
         self.timer = QTimer()
-        self.timer.timeout.connect(lambda: update_action(self.label_field, self.faces, self.pressed_keys))
+        self.timer.timeout.connect(self.update_scene)
         self.timer.start(FPS)
 
 
@@ -34,8 +45,14 @@ class MainApp(QMainWindow, Ui_MainWindow):
 
 
     def prepare_data(self):
-        reader_from_file(filename=FILENAME, dots=self.dots, edges=self.edges, faces=self.faces)
-        # print_all_data(self.dots, self.edges, self.faces)
+        reader_from_file(filename=FILENAME_MAP, dots=self.dots, edges=self.edges, faces=self.faces)
+        dots_car, edges_car, faces_car = [], [], []
+        reader_from_file(FILENAME_CAR, dots_car, edges_car, faces_car)
+        self.car = SceneObject(dots_car, edges_car, faces_car)
+        self.car.position = np.array(START_POSITION, dtype=float)
+        self.car_target = np.array(TARGET, dtype=float)
+        self.car_speed = SPEED_CAR
+        print_all_data(self.car.dots, self.car.edges, self.car.faces)
 
 
     def initCanvas(self):
@@ -45,14 +62,27 @@ class MainApp(QMainWindow, Ui_MainWindow):
 
 
     def start_image(self):
-        draw_faces_zbuffer(self.label_field, self.faces)
+        draw_scene_with_objects(self.label_field, self.faces, self.camera, objects=[self.car])
+
+
+    def move_car_to_target(self):
+        direction = self.car_target - self.car.position
+        distance = np.linalg.norm(direction)
+        if distance < 1e-3:
+            return
+        direction /= distance
+        self.car.position += direction * min(self.car_speed, distance)
+
+
+    def update_scene(self):
+        self.move_car_to_target()
+        update_action(self.label_field, self.faces, self.pressed_keys, self.camera, objects=[self.car])
 
 
     def keyPressEvent(self, event):
         if event.isAutoRepeat():
             return
-        if event.key() in (Qt.Key_W, Qt.Key_A, Qt.Key_S, Qt.Key_D):
-            self.pressed_keys.add(event.key())
+        self.pressed_keys.add(event.key())
 
 
     def keyReleaseEvent(self, event):
@@ -60,5 +90,3 @@ class MainApp(QMainWindow, Ui_MainWindow):
             return
         if event.key() in self.pressed_keys:
             self.pressed_keys.remove(event.key())
-
-

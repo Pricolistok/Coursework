@@ -1,18 +1,23 @@
 import numpy as np
 
-
 WIDTH_CANVAS = 1000
 HEIGHT_CANVAS = 1000
 X_OFFSET = WIDTH_CANVAS // 2
 Y_OFFSET = HEIGHT_CANVAS // 2
-SCALE = 15
-ANGLE_CLICK = 0.2
+SCALE = 25
+ANGLE_CLICK = 2
 FPS = 32
-FILENAME = 'models/model_data.txt'
+FILENAME_MAP = 'models/map.txt'
+FILENAME_CAR = 'models/car.txt'
+
 DEFAULT_CAMERA_POSITION = (0, 0, -20)
 DEFAULT_CAMERA_LOOK_AT = (0, 0, 0)
 DEFAULT_CAMERA_UP = (0, 1, 0)
 DEFAULT_CAMERA_FOV = 1.0
+START_POSITION = [-5, 7, 0]
+
 DEFAULT_EDGE_THICKNESS = 1
-DEFAULT_FILL_COLOR = np.array([255, 0, 0], dtype=np.uint8)
-DEFAULT_EDGE_COLOR = np.array([255, 255, 255], dtype=np.uint8)
+DEFAULT_FILL_COLOR = np.array([0, 0, 255], dtype=np.uint8)
+DEFAULT_EDGE_COLOR = np.array([0, 0, 0], dtype=np.uint8)
+SPEED_CAR = 0.5
+TARGET = [-5, -5, 0]

@@ -1,10 +1,12 @@
 from dataclasses import dataclass
 
+
 @dataclass()
 class Dot:
     x: float
     y: float
     z: float
+
 
 @dataclass()
 class Edge:
@@ -15,3 +17,4 @@ class Edge:
 @dataclass()
 class Face:
     vertices: list[Dot]
+    color: list[int] = None
