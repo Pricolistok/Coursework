@@ -14,7 +14,8 @@ class Edge:
     end_dot: Dot
 
 
-@dataclass()
+@dataclass
 class Face:
-    vertices: list[Dot]
+    vertices: list
     color: list[int] = None
+    uv: list = None
