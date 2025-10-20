@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Camera:
     def __init__(self, position=(0, 0, -20), target=(0, 0, 0), up=(0, 1, 0), fov=1.0):
         self.target = np.array(target, dtype=float)
@@ -77,6 +78,7 @@ class Camera:
         vec = np.array([point.x, point.y, point.z, 1.0])
         cam = self.view_matrix @ vec
         return cam[:3]
+
 
     def project(self, point, d=800):
         p_cam = self.world_to_camera(point)
