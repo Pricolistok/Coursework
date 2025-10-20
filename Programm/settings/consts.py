@@ -52,4 +52,10 @@ MATRIX_MAP_REAL_COORDS = (
     ((7, 7, 0), (5, 7, 0), (3, 7, 0), (1, 7, 0), (-1, 7, 0), (-3, 7, 0), (-5, 7, 0), (-7, 7, 0))
     )
 
+# --- Texture settings ---
+TEXTURE_COLOR_KEY = (72, 72, 72)        # цвет граней, которые нужно текстурировать
+TEXTURE_PATH = "textures/road.jpg"
+TEXTURE_REPEAT = 1.0  # масштаб UV (1.0 = без повторов)
+
+
 

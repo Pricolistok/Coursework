@@ -2,6 +2,19 @@ from PyQt5.QtGui import QPixmap, QImage
 from settings.consts import *
 import numpy as np
 
+# === ЗАГРУЗКА ТЕКСТУРЫ ===
+try:
+    TEXTURE_IMG = QImage(TEXTURE_PATH).convertToFormat(QImage.Format_RGB888)
+    width = TEXTURE_IMG.width()
+    height = TEXTURE_IMG.height()
+    ptr = TEXTURE_IMG.bits()
+    ptr.setsize(height * TEXTURE_IMG.bytesPerLine())
+    TEXTURE_ARRAY = np.frombuffer(ptr, np.uint8).reshape((height, TEXTURE_IMG.bytesPerLine() // 3, 3))[:, :width, :]
+    print(f"✅ Текстура загружена: {width}x{height}")
+except Exception as e:
+    print("⚠ Ошибка загрузки текстуры:", e)
+    TEXTURE_ARRAY = None
+
 
 def project_vertex(dot, cam, mode='perspective'):
     x, y, z = cam.world_to_camera(dot)
@@ -18,6 +31,9 @@ def project_vertex(dot, cam, mode='perspective'):
 
 
 def rasterize_face_zbuffer(face, zbuffer, img_array, proj_mode, cam):
+    # Проверяем, нужно ли текстурировать
+    is_textured = tuple(face.color) == TEXTURE_COLOR_KEY and TEXTURE_ARRAY is not None
+
     verts = [project_vertex(v, cam=cam, mode=proj_mode) for v in face.vertices]
     xs, ys, zs = zip(*verts)
     xs, ys, zs = np.array(xs), np.array(ys), np.array(zs)
@@ -57,8 +73,21 @@ def rasterize_face_zbuffer(face, zbuffer, img_array, proj_mode, cam):
         col_range = np.arange(x_start, x_end + 1)
         z_line = np.interp(col_range, x_intersections, z_intersections)
         mask = z_line < zbuffer[y, col_range]
+
+        if not np.any(mask):
+            continue
+
         zbuffer[y, col_range[mask]] = z_line[mask]
-        img_array[y, col_range[mask]] = face.color
+
+        if is_textured:
+            # Применяем UV текстуру
+            h, w, _ = TEXTURE_ARRAY.shape
+            xs_tex = ((col_range / WIDTH_CANVAS) * w * TEXTURE_REPEAT).astype(int) % w
+            ys_tex = int((y / HEIGHT_CANVAS) * h * TEXTURE_REPEAT) % h
+            img_array[y, col_range[mask]] = TEXTURE_ARRAY[ys_tex, xs_tex[mask]]
+        else:
+            img_array[y, col_range[mask]] = face.color
+
 
 
 def plot_thick_pixel(x, y, z, radius, zbuffer, img_array, color):
