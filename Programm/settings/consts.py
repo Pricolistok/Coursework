@@ -1,15 +1,14 @@
 import numpy as np
 
-
 WIDTH_CANVAS = 1000
 HEIGHT_CANVAS = 1000
 X_OFFSET = WIDTH_CANVAS // 2
 Y_OFFSET = HEIGHT_CANVAS // 2
-SCALE = 25
+SCALE = 30
 
-ANGLE_CLICK = 2
+ANGLE_CLICK = 20
 
-FRAME_TIME_MS = 33
+FRAME_TIME_MS = 32
 
 FILENAME_MAP = 'models/map.txt'
 FILENAME_CAR = 'models/car.txt'
@@ -23,12 +22,12 @@ DEFAULT_EDGE_THICKNESS = 1
 DEFAULT_FILL_COLOR = np.array((0, 0, 255), dtype=np.uint8)
 DEFAULT_EDGE_COLOR = np.array((0, 0, 0), dtype=np.uint8)
 
-SPEED_CAR = 0.5
+SPEED_CAR = 1
 START_POSITION = (-5, 7, 0)
 TARGET = (-5, -5, 0)
 START_IDX = (3, 1)
 END_IDX = (3, 4)
-CAR_MAX_TURN_ANGLE_DEG = 5
+CAR_MAX_TURN_ANGLE_DEG = 45
 
 MATRIX_MAP = (
     (0, 1, 0, 0, 1, 0, 1, 0),
@@ -52,10 +51,14 @@ MATRIX_MAP_REAL_COORDS = (
     ((7, 7, 0), (5, 7, 0), (3, 7, 0), (1, 7, 0), (-1, 7, 0), (-3, 7, 0), (-5, 7, 0), (-7, 7, 0))
     )
 
-# --- Texture settings ---
-TEXTURE_COLOR_KEY = (11, 72, 22)        # цвет граней, которые нужно текстурировать
-TEXTURE_PATH = "textures/road.jpg"
-TEXTURE_REPEAT = 1.0  # масштаб UV (1.0 = без повторов)
+TEXTURE_MAP = {
+    (11, 72, 22): "textures/grass.jpg",
+    (72, 72, 72): "textures/road.jpg"
+}
 
+TEXTURE_REPEAT_MAP = {
+    (11, 72, 22): 2.0,
+    (72, 72, 72): 2.0# Трава - повторять 2 раза
+}
 
-
+DEFAULT_TEXTURE_REPEAT = 2.0
