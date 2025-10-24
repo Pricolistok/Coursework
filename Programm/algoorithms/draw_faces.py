@@ -40,6 +40,9 @@ def load_textures():
                 texture_array = texture_data.reshape((height, bytes_per_line // 3, 3))
                 texture_array = texture_array[:, :width, :].copy()
 
+            # ИСПРАВЛЕНИЕ: преобразование BGR to RGB
+            texture_array = texture_array[:, :, [2, 1, 0]]
+
             TEXTURES[color_key] = {
                 'array': texture_array,
                 'width': width,
@@ -362,12 +365,12 @@ def draw_faces_zbuffer_optimized(label_field, faces, cam, edge_thickness=DEFAULT
 
     image_bits = image.bits()
     image_bits.setsize(WIDTH_CANVAS * HEIGHT_CANVAS * 4)
-    img_rgba = np.zeros((HEIGHT_CANVAS, WIDTH_CANVAS, 4), dtype=np.uint8)
-    img_rgba[..., :3] = img_array
-    img_rgba[..., 3] = 255
-
     target_array = np.frombuffer(image_bits, np.uint8).reshape((HEIGHT_CANVAS, WIDTH_CANVAS, 4))
-    np.copyto(target_array, img_rgba)
+
+    target_array[..., 0] = img_array[..., 2]
+    target_array[..., 1] = img_array[..., 1]
+    target_array[..., 2] = img_array[..., 0]
+    target_array[..., 3] = 255
 
     label_field.setPixmap(QPixmap.fromImage(image))
 
