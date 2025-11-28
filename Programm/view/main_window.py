@@ -1,5 +1,6 @@
 import sys
 import ctypes
+import time
 from ctypes import wintypes
 from PyQt5.QtGui import QPalette, QColor
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
@@ -11,6 +12,7 @@ from view.scene_manager import SceneManager
 from settings.consts import *
 from PyQt5.QtCore import Qt
 
+
 class MainApp(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
@@ -19,14 +21,20 @@ class MainApp(QMainWindow, Ui_MainWindow):
         self.scene_manager = None
         self.timer = None
 
+        self.last_time = time.time()
+        self.frame_count = 0
+
         self.initStart()
 
     def initStart(self):
         self.setupUi(self)
         self.setFixedSize(self.size())
-        self.mapBtn.setStyleSheet("background-color: #404040; color: white; font-weight: bold;")
-        self.aboutProgramm.setStyleSheet("background-color: #404040; color: white; font-weight: bold;")
-        self.aboutCreator.setStyleSheet("background-color: #404040; color: white; font-weight: bold;")
+
+        style = "background-color: #404040; color: white; font-weight: bold;"
+        self.mapBtn.setStyleSheet(style)
+        self.aboutProgramm.setStyleSheet(style)
+        self.aboutCreator.setStyleSheet(style)
+
         self.setDarkTitleBar()
         self.init_managers()
         self.setup_connections()
@@ -74,11 +82,9 @@ class MainApp(QMainWindow, Ui_MainWindow):
         self.aboutCreator.clicked.connect(self.show_about_creator)
 
     def show_about_program(self):
-        """Показать информацию о программе"""
         QMessageBox.information(self, ABOUT_PROGRAM_TITLE, ABOUT_PROGRAM_TEXT)
 
     def show_about_creator(self):
-        """Показать информацию о создателе"""
         QMessageBox.information(self, ABOUT_CREATOR_TITLE, ABOUT_CREATOR_TEXT)
 
     def start_timer(self):
@@ -112,6 +118,25 @@ class MainApp(QMainWindow, Ui_MainWindow):
     def update_scene(self):
         self.car_manager.update_movement()
         self.scene_manager.update_scene()
+        self.update_fps()
+
+    def update_fps(self):
+        self.frame_count += 1
+        current_time = time.time()
+
+        # Разница во времени
+        elapsed_time = current_time - self.last_time
+
+        # Обновляем раз в секунду
+        if elapsed_time >= 1.0:
+            # Считаем точное значение с дробной частью
+            real_fps = self.frame_count / elapsed_time
+
+            # Форматируем до 1 знака после запятой
+            self.label_fps.setText(f"ФПС: {real_fps:.1f}")
+
+            self.frame_count = 0
+            self.last_time = current_time
 
     def on_path_calculated(self, success):
         pass

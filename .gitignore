@@ -1,0 +1,7 @@
+other_RPZ/
+*.zip
+app/
+*.spec
+Programm/build/
+Programm/dist/
+Programm/for_build/

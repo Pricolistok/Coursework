@@ -40,6 +40,21 @@ class Ui_MainWindow(object):
         self.label_field.setGeometry(QtCore.QRect(30, 30, 1000, 1000))
         self.label_field.setText("")
         self.label_field.setObjectName("label_field")
+
+        # --- ЛЕЙБЛ ДЛЯ ФПС ---
+        self.label_fps = QtWidgets.QLabel(self.centralwidget)
+        self.label_fps.setGeometry(QtCore.QRect(1060, 40, 420, 30))
+        font = QtGui.QFont()
+        font.setFamily("Tahoma")
+        font.setPointSize(14)
+        font.setBold(True)
+        self.label_fps.setFont(font)
+        # Статичный белый цвет
+        self.label_fps.setStyleSheet("color: white;")
+        self.label_fps.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_fps.setObjectName("label_fps")
+        # ---------------------
+
         self.mapView = QtWidgets.QGraphicsView(self.centralwidget)
         self.mapView.setGeometry(QtCore.QRect(1060, 80, 420, 420))
         self.mapView.setObjectName("mapView")
@@ -81,8 +96,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Course work"))
+        # Текст на русском с дробной частью
+        self.label_fps.setText(_translate("MainWindow", "ФПС: 0.0"))
         self.mapBtn.setText(_translate("MainWindow", "Начать движение!"))
-        self.label.setToolTip(_translate("MainWindow", "<html><head/><body><p><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Oxygen\',\'Ubuntu\',\'Cantarell\',\'Open Sans\',\'Helvetica Neue\',\'sans-serif\'; font-size:16px; font-weight:600; color:#f9fafb;\">Управление камерой</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Oxygen\',\'Ubuntu\',\'Cantarell\',\'Open Sans\',\'Helvetica Neue\',\'sans-serif\'; font-size:16px; color:#f9fafb;\"><br/>WASD - движение камеры | Q/E - вращение</span></p><p><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Oxygen\',\'Ubuntu\',\'Cantarell\',\'Open Sans\',\'Helvetica Neue\',\'sans-serif\'; font-size:16px; font-weight:600; color:#f9fafb;\">Работа с картой</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Oxygen\',\'Ubuntu\',\'Cantarell\',\'Open Sans\',\'Helvetica Neue\',\'sans-serif\'; font-size:16px; color:#f9fafb;\"><br/>ЛКМ - старт 🟢 | ПКМ - финиш 🔴</span></p><p><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Oxygen\',\'Ubuntu\',\'Cantarell\',\'Open Sans\',\'Helvetica Neue\',\'sans-serif\'; font-size:16px; font-weight:600; color:#f9fafb;\">Обозначения</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Oxygen\',\'Ubuntu\',\'Cantarell\',\'Open Sans\',\'Helvetica Neue\',\'sans-serif\'; font-size:16px; color:#f9fafb;\"><br/>⬛ Дорога | 🟩 Препятствие</span></p><p><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Oxygen\',\'Ubuntu\',\'Cantarell\',\'Open Sans\',\'Helvetica Neue\',\'sans-serif\'; font-size:16px; font-weight:600; color:#f9fafb;\">Запуск маршрута</span><span style=\" font-family:\'quote-cjk-patch\',\'Inter\',\'system-ui\',\'-apple-system\',\'BlinkMacSystemFont\',\'Segoe UI\',\'Roboto\',\'Oxygen\',\'Ubuntu\',\'Cantarell\',\'Open Sans\',\'Helvetica Neue\',\'sans-serif\'; font-size:16px; color:#f9fafb;\"><br/>Выберите точки → Start Movement</span></p></body></html>"))
-        self.label.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt;\">Управление камерой</span></p><p><span style=\" font-size:12pt;\">WASD - движение камеры</span><br/></p><p><span style=\" font-size:12pt;\">Работа с картой</span></p><p><span style=\" font-size:12pt;\">ЛКМ - старт 🟢 | ПКМ - финиш 🔴</span><br/></p><p><span style=\" font-size:12pt;\">Обозначения на карте</span></p><p><span style=\" font-size:12pt;\">⬛ Дорога | 🟩 Препятствие</span></p></body></html>"))
+        self.label.setText(_translate("MainWindow",
+                                      "<html><head/><body><p><span style=\" font-size:12pt;\">Управление камерой</span></p><p><span style=\" font-size:12pt;\">WASD - движение камеры</span><br/></p><p><span style=\" font-size:12pt;\">Работа с картой</span></p><p><span style=\" font-size:12pt;\">ЛКМ - старт 🟢 | ПКМ - финиш 🔴</span><br/></p><p><span style=\" font-size:12pt;\">Обозначения на карте</span></p><p><span style=\" font-size:12pt;\">⬛ Дорога | 🟩 Препятствие</span></p></body></html>"))
         self.aboutProgramm.setText(_translate("MainWindow", "О программе"))
         self.aboutCreator.setText(_translate("MainWindow", "О разработчике"))
