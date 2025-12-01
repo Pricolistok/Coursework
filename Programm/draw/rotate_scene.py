@@ -1,9 +1,10 @@
 from settings.consts import *
 from PyQt5.QtCore import Qt
-from algoorithms.draw_faces import draw_scene_with_objects
+# Исправленный импорт: берем из папки algorithms
+from algorithms.draw_faces import draw_scene_with_objects
 
 
-def update_action(label_field, faces, pressed_keys, camera, objects=[]):
+def update_action(label_field, faces, pressed_keys, camera, current_scale, objects=[]):
     pitch = 0
     yaw = 0
 
@@ -23,4 +24,5 @@ def update_action(label_field, faces, pressed_keys, camera, objects=[]):
     if pitch != 0:
         camera.rotate_orbit_vertical(d_phi=pitch)
 
-    draw_scene_with_objects(label_field, faces, camera, objects)
+    # Передаем current_scale в функцию отрисовки
+    draw_scene_with_objects(label_field, faces, camera, current_scale, objects)

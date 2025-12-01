@@ -1,7 +1,7 @@
 from copy import deepcopy
 from PyQt5.QtGui import QImage, QPainter, QPen, QColor, QPixmap
 from PyQt5.QtCore import Qt
-from algoorithms.rotate import rotate_dot
+from algorithms.rotate import rotate_dot
 from settings.consts import *
 
 

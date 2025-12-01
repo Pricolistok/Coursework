@@ -1,16 +1,18 @@
 import sys
 import ctypes
 import time
+import os  # Не забудьте импорт os
 from ctypes import wintypes
 from PyQt5.QtGui import QPalette, QColor
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, Qt
 from design.design import Ui_MainWindow
 from view.map_manager import MapManager
 from view.car_manager import CarManager
 from view.scene_manager import SceneManager
+from view.light_dialog import LightDialog
 from settings.consts import *
-from PyQt5.QtCore import Qt
+import algorithms.draw_faces as draw_logic
 
 
 class MainApp(QMainWindow, Ui_MainWindow):
@@ -20,11 +22,32 @@ class MainApp(QMainWindow, Ui_MainWindow):
         self.car_manager = None
         self.scene_manager = None
         self.timer = None
-
         self.last_time = time.time()
         self.frame_count = 0
 
         self.initStart()
+
+    def closeEvent(self, event):
+        """
+        Вызывается при закрытии окна.
+        Читает файл света, берет только ПЕРВУЮ строку и перезаписывает файл.
+        """
+        try:
+            if os.path.exists(FILENAME_LIGHTS):
+                # 1. Читаем все строки
+                with open(FILENAME_LIGHTS, 'r', encoding='utf-8') as f:
+                    lines = f.readlines()
+
+                # 2. Если есть хотя бы одна строка, перезаписываем файл только ей
+                if lines:
+                    first_line = lines[0].strip()  # strip убирает лишние пробелы и \n
+                    with open(FILENAME_LIGHTS, 'w', encoding='utf-8') as f:
+                        f.write(first_line)
+
+        except Exception as e:
+            print(f"Ошибка при очистке файла света: {e}")
+
+        event.accept()
 
     def initStart(self):
         self.setupUi(self)
@@ -32,6 +55,7 @@ class MainApp(QMainWindow, Ui_MainWindow):
 
         style = "background-color: #404040; color: white; font-weight: bold;"
         self.mapBtn.setStyleSheet(style)
+        self.lightBtn.setStyleSheet(style)
         self.aboutProgramm.setStyleSheet(style)
         self.aboutCreator.setStyleSheet(style)
 
@@ -44,15 +68,10 @@ class MainApp(QMainWindow, Ui_MainWindow):
         if sys.platform == "win32":
             try:
                 value = wintypes.DWORD(1)
-                ctypes.windll.dwmapi.DwmSetWindowAttribute(
-                    int(self.winId()),
-                    20,
-                    ctypes.byref(value),
-                    ctypes.sizeof(value)
-                )
-            except Exception as e:
-                print(f"Не удалось установить темную тему: {e}")
-
+                ctypes.windll.dwmapi.DwmSetWindowAttribute(int(self.winId()), 20, ctypes.byref(value),
+                                                           ctypes.sizeof(value))
+            except Exception:
+                pass
         self.setDarkPalette()
 
     def setDarkPalette(self):
@@ -69,17 +88,38 @@ class MainApp(QMainWindow, Ui_MainWindow):
         self.scene_manager = SceneManager(self.label_field)
         self.map_manager = MapManager(self.mapView, self.scene_manager)
         self.car_manager = CarManager(self.scene_manager)
-
         self.map_manager.on_path_calculated = self.on_path_calculated
         self.car_manager.on_movement_finished = self.on_movement_finished
-
         self.scene_manager.load_scene_data()
         self.car_manager.load_car_data()
 
     def setup_connections(self):
         self.mapBtn.clicked.connect(self.start_movement)
+        self.lightBtn.clicked.connect(self.open_light_dialog)
         self.aboutProgramm.clicked.connect(self.show_about_program)
         self.aboutCreator.clicked.connect(self.show_about_creator)
+
+    def open_light_dialog(self):
+        dialog = LightDialog(self)
+        if dialog.exec_():
+            data = dialog.get_data()
+            self.add_light_to_file(data)
+            self.reload_lighting()
+
+    def add_light_to_file(self, data):
+        """Добавляет новый свет в конец файла."""
+        try:
+            line = f"{data['dir'][0]} {data['dir'][1]} {data['dir'][2]} " \
+                   f"{data['color'][0]} {data['color'][1]} {data['color'][2]} " \
+                   f"{data['intensity']}"
+
+            with open(FILENAME_LIGHTS, 'a', encoding='utf-8') as f:
+                f.write('\n' + line)
+        except Exception as e:
+            QMessageBox.warning(self, "Ошибка", f"Не удалось сохранить настройки света:\n{e}")
+
+    def reload_lighting(self):
+        draw_logic.reload_lights()
 
     def show_about_program(self):
         QMessageBox.information(self, ABOUT_PROGRAM_TITLE, ABOUT_PROGRAM_TEXT)
@@ -96,7 +136,6 @@ class MainApp(QMainWindow, Ui_MainWindow):
         if not self.map_manager.can_start_movement():
             self.show_start_error()
             return
-
         start_position = self.map_manager.get_start_position()
         path_points = self.map_manager.get_path_points()
         self.car_manager.start_movement(start_position, path_points)
@@ -105,7 +144,6 @@ class MainApp(QMainWindow, Ui_MainWindow):
     def show_start_error(self):
         start_idx = self.map_manager.start_idx
         end_idx = self.map_manager.end_idx
-
         if start_idx is None and end_idx is None:
             QMessageBox.warning(self, "Ошибка", "Не выбраны начальная и конечная точки!")
         elif start_idx is None:
@@ -123,18 +161,10 @@ class MainApp(QMainWindow, Ui_MainWindow):
     def update_fps(self):
         self.frame_count += 1
         current_time = time.time()
-
-        # Разница во времени
         elapsed_time = current_time - self.last_time
-
-        # Обновляем раз в секунду
         if elapsed_time >= 1.0:
-            # Считаем точное значение с дробной частью
             real_fps = self.frame_count / elapsed_time
-
-            # Форматируем до 1 знака после запятой
             self.label_fps.setText(f"ФПС: {real_fps:.1f}")
-
             self.frame_count = 0
             self.last_time = current_time
 

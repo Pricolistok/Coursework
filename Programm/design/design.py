@@ -41,7 +41,6 @@ class Ui_MainWindow(object):
         self.label_field.setText("")
         self.label_field.setObjectName("label_field")
 
-        # --- ЛЕЙБЛ ДЛЯ ФПС ---
         self.label_fps = QtWidgets.QLabel(self.centralwidget)
         self.label_fps.setGeometry(QtCore.QRect(1060, 40, 420, 30))
         font = QtGui.QFont()
@@ -49,15 +48,14 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         font.setBold(True)
         self.label_fps.setFont(font)
-        # Статичный белый цвет
         self.label_fps.setStyleSheet("color: white;")
         self.label_fps.setAlignment(QtCore.Qt.AlignCenter)
         self.label_fps.setObjectName("label_fps")
-        # ---------------------
 
         self.mapView = QtWidgets.QGraphicsView(self.centralwidget)
         self.mapView.setGeometry(QtCore.QRect(1060, 80, 420, 420))
         self.mapView.setObjectName("mapView")
+
         self.mapBtn = QtWidgets.QPushButton(self.centralwidget)
         self.mapBtn.setGeometry(QtCore.QRect(1060, 510, 421, 51))
         font = QtGui.QFont()
@@ -66,25 +64,40 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.mapBtn.setFont(font)
         self.mapBtn.setObjectName("mapBtn")
+
+        self.lightBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.lightBtn.setGeometry(QtCore.QRect(1060, 570, 421, 51))
+        font = QtGui.QFont()
+        font.setFamily("Tahoma")
+        font.setPointSize(12)
+        font.setBold(True)
+        self.lightBtn.setFont(font)
+        self.lightBtn.setObjectName("lightBtn")
+
+        # УВЕЛИЧИЛ ВЫСОТУ ДО 280
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(1070, 590, 341, 261))
+        self.label.setGeometry(QtCore.QRect(1070, 630, 341, 280))
         self.label.setObjectName("label")
+
+        # СДВИНУЛ НИЖНИЕ КНОПКИ ЕЩЕ НИЖЕ (910 и 970)
         self.aboutProgramm = QtWidgets.QPushButton(self.centralwidget)
-        self.aboutProgramm.setGeometry(QtCore.QRect(1060, 870, 421, 51))
+        self.aboutProgramm.setGeometry(QtCore.QRect(1060, 910, 421, 51))
         font = QtGui.QFont()
         font.setFamily("Tahoma")
         font.setPointSize(12)
         font.setBold(True)
         self.aboutProgramm.setFont(font)
         self.aboutProgramm.setObjectName("aboutProgramm")
+
         self.aboutCreator = QtWidgets.QPushButton(self.centralwidget)
-        self.aboutCreator.setGeometry(QtCore.QRect(1060, 930, 421, 51))
+        self.aboutCreator.setGeometry(QtCore.QRect(1060, 970, 421, 51))
         font = QtGui.QFont()
         font.setFamily("Tahoma")
         font.setPointSize(12)
         font.setBold(True)
         self.aboutCreator.setFont(font)
         self.aboutCreator.setObjectName("aboutCreator")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -96,10 +109,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Course work"))
-        # Текст на русском с дробной частью
         self.label_fps.setText(_translate("MainWindow", "ФПС: 0.0"))
         self.mapBtn.setText(_translate("MainWindow", "Начать движение!"))
+        self.lightBtn.setText(_translate("MainWindow", "Добавить источник света"))
         self.label.setText(_translate("MainWindow",
-                                      "<html><head/><body><p><span style=\" font-size:12pt;\">Управление камерой</span></p><p><span style=\" font-size:12pt;\">WASD - движение камеры</span><br/></p><p><span style=\" font-size:12pt;\">Работа с картой</span></p><p><span style=\" font-size:12pt;\">ЛКМ - старт 🟢 | ПКМ - финиш 🔴</span><br/></p><p><span style=\" font-size:12pt;\">Обозначения на карте</span></p><p><span style=\" font-size:12pt;\">⬛ Дорога | 🟩 Препятствие</span></p></body></html>"))
+                                      "<html><head/><body><p><span style=\" font-size:12pt;\">Управление камерой</span></p><p><span style=\" font-size:12pt;\">WASD - движение камеры</span><br/><span style=\" font-size:12pt;\">Q / E - масштаб</span><br/></p><p><span style=\" font-size:12pt;\">Работа с картой</span></p><p><span style=\" font-size:12pt;\">ЛКМ - старт 🟢 | ПКМ - финиш 🔴</span><br/></p><p><span style=\" font-size:12pt;\">Обозначения на карте</span></p><p><span style=\" font-size:12pt;\">⬛ Дорога | 🟩 Препятствие</span></p></body></html>"))
         self.aboutProgramm.setText(_translate("MainWindow", "О программе"))
         self.aboutCreator.setText(_translate("MainWindow", "О разработчике"))

@@ -12,6 +12,10 @@ class SceneManager:
         self.dots, self.edges, self.faces = [], [], []
         self.objects = []
         self.pressed_keys = set()
+
+        # Инициализируем текущий масштаб значением из настроек
+        self.current_scale = SCALE
+
         self.camera = Camera(
             position=DEFAULT_CAMERA_POSITION,
             target=DEFAULT_CAMERA_LOOK_AT,
@@ -33,7 +37,20 @@ class SceneManager:
         self.objects.append(obj)
 
     def update_scene(self):
-        update_action(self.label_field, self.faces, self.pressed_keys, self.camera, objects=self.objects)
+        # Логика зума
+        if Qt.Key_Q in self.pressed_keys:
+            self.current_scale += ZOOM_SPEED
+        if Qt.Key_E in self.pressed_keys:
+            self.current_scale -= ZOOM_SPEED
+
+        # Ограничение зума
+        # SCALE - это начальное значение, оно же минимальное (максимальное отдаление)
+        # MAX_SCALE - максимальное приближение
+        self.current_scale = max(SCALE, min(self.current_scale, MAX_SCALE))
+
+        # Передаем current_scale в функцию обновления
+        update_action(self.label_field, self.faces, self.pressed_keys, self.camera, self.current_scale,
+                      objects=self.objects)
 
     def key_press_event(self, event):
         if event.isAutoRepeat():

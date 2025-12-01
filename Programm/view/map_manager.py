@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QGraphicsScene, QMessageBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QBrush, QColor, QPen
 from settings.consts import *
-from algoorithms.wave_algorithm import wave_path, path_to_real_coords
+from algorithms.wave_algorithm import wave_path, path_to_real_coords
 import numpy as np
 
 ROAD_COLOR = QColor(0, 0, 0)
