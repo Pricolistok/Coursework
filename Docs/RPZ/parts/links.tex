@@ -1,4 +1,10 @@
-\begin{flushleft}
-	\bibliographystyle{parts/utf8gost705u}  % стилевой файл для оформления по ГОСТу
-	\bibliography{parts/lib.bib}          % имя библиографической базы (bib-файла)
-\end{flushleft}
+\clearpage
+\renewcommand{\bibname}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+\phantomsection
+\addcontentsline{toc}{chapter}{СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ}
+
+\begingroup
+\bibliographystyle{parts/modified-utf8gost705u}
+\raggedright
+\bibliography{parts/lib}
+\endgroup

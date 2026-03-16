@@ -8,7 +8,7 @@ import numpy as np
 class CarManager:
     def __init__(self, scene_manager):
         self.scene_manager = scene_manager
-        self.car = None  # Только одна машина!
+        self.car = None
         self.path_points = []
         self.current_target_index = 0
         self.is_moving = False
@@ -16,6 +16,7 @@ class CarManager:
         self.on_movement_finished = None
 
         self.dots_car, self.edges_car, self.faces_car = [], [], []
+
 
     def load_car_data(self):
         if self.car is not None:
@@ -27,13 +28,11 @@ class CarManager:
         initial_position = self.find_initial_position()
         self.car.position = initial_position
 
-        # Добавляем машину на сцену
         self.scene_manager.add_object(self.car)
         print(f"Машина создана в позиции: {initial_position}")
 
     def find_initial_position(self):
-        """Нахождение начальной позиции на дороге"""
-        return np.array([-5, 7, 0], dtype=float)  # Фиксированные координаты
+        return np.array([-5, 7, 0], dtype=float)
 
     def start_movement(self, start_position, path_points):
         self.car.position = start_position.copy()

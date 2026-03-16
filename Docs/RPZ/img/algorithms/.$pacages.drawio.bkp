@@ -1,0 +1,123 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2">
+  <diagram name="Страница — 1" id="pGXLxV3QJKhMc2nXNDJ_">
+    <mxGraphModel dx="1963" dy="795" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-25" target="z_KmcIXuTpUnLq9mAn68-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="125" y="240" />
+              <mxPoint x="404" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-25" value="&lt;ul&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;p class=&quot;ng-star-inserted&quot;&gt;&lt;strong class=&quot;ng-star-inserted&quot;&gt;View&lt;/strong&gt;&lt;/p&gt;&lt;/span&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;MainWindow&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;SceneManager&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;CarManager&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;span class=&quot;inline-code ng-star-inserted&quot;&gt;MapManager&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;span class=&quot;inline-code ng-star-inserted&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;span class=&quot;inline-code ng-star-inserted&quot;&gt;LightDialog&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=80;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;labelPosition=center;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;movableLabel=1;enumerate=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="130" height="110" as="geometry">
+            <mxPoint x="-26" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-26" value="&lt;ul&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;p class=&quot;ng-star-inserted&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;strong class=&quot;ng-star-inserted&quot;&gt;Draw&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;DrawFaces&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;ShadowCaster&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;span class=&quot;inline-code ng-star-inserted&quot;&gt;Camera&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=80;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;labelPosition=center;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;movableLabel=1;enumerate=0;" vertex="1" parent="1">
+          <mxGeometry x="339" y="280" width="130" height="90" as="geometry">
+            <mxPoint x="-26" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-27" value="&lt;ul&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;p class=&quot;ng-star-inserted&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;strong class=&quot;ng-star-inserted&quot;&gt;Algorithms&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;WaveAlgorithm&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=80;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;labelPosition=center;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;movableLabel=1;enumerate=0;" vertex="1" parent="1">
+          <mxGeometry x="169" y="390" width="130" height="50" as="geometry">
+            <mxPoint x="-26" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-28" value="&lt;ul&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;p class=&quot;ng-star-inserted&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;strong class=&quot;ng-star-inserted&quot;&gt;Classes&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;SceneObject&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;span class=&quot;inline-code ng-star-inserted&quot;&gt;Face&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;Dot&lt;/li&gt;&lt;/ul&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=80;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;labelPosition=center;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;movableLabel=1;enumerate=0;" vertex="1" parent="1">
+          <mxGeometry x="480" y="170" width="130" height="90" as="geometry">
+            <mxPoint x="-25" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-29" value="&lt;ul&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;p class=&quot;ng-star-inserted&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;strong class=&quot;ng-star-inserted&quot;&gt;Auxiliary&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;ReaderFromFile&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=80;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;labelPosition=center;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;movableLabel=1;enumerate=0;" vertex="1" parent="1">
+          <mxGeometry x="529" y="460" width="130" height="50" as="geometry">
+            <mxPoint x="-26" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-30" value="&lt;ul&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;p class=&quot;ng-star-inserted&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;strong class=&quot;ng-star-inserted&quot;&gt;Settings&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;Consts&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=80;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;labelPosition=center;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;movableLabel=1;enumerate=0;" vertex="1" parent="1">
+          <mxGeometry x="169" y="510" width="130" height="50" as="geometry">
+            <mxPoint x="-26" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-31" value="&lt;ul&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;p class=&quot;ng-star-inserted&quot;&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;&lt;strong class=&quot;ng-star-inserted&quot;&gt;Design&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;/span&gt;&lt;li&gt;&lt;span class=&quot;router-outlet-wrapper ng-tns-c2785337336-0&quot;&gt;Ui_MainWindow&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=80;tabHeight=20;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;labelPosition=center;verticalLabelPosition=middle;align=left;verticalAlign=middle;movable=1;movableLabel=1;enumerate=0;" vertex="1" parent="1">
+          <mxGeometry x="169" y="300" width="130" height="50" as="geometry">
+            <mxPoint x="-26" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;entryX=0;entryY=0;entryDx=0;entryDy=20;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-25" target="z_KmcIXuTpUnLq9mAn68-31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="360" as="sourcePoint" />
+            <mxPoint x="190" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;entryX=0;entryY=0;entryDx=0;entryDy=20;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-25" target="z_KmcIXuTpUnLq9mAn68-27">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="470" as="sourcePoint" />
+            <mxPoint x="160" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;entryX=0;entryY=0;entryDx=0;entryDy=37.5;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-25" target="z_KmcIXuTpUnLq9mAn68-28">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-10" y="430" as="sourcePoint" />
+            <mxPoint x="80" y="515" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;entryX=0;entryY=0;entryDx=0;entryDy=20;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-25" target="z_KmcIXuTpUnLq9mAn68-30">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="570" as="sourcePoint" />
+            <mxPoint x="200" y="803" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-26" target="z_KmcIXuTpUnLq9mAn68-28">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="570" y="300" as="sourcePoint" />
+            <mxPoint x="1010" y="530" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="545" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=130;entryDy=27.5;entryPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-26" target="z_KmcIXuTpUnLq9mAn68-30">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="729" y="495" as="sourcePoint" />
+            <mxPoint x="804" y="310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;exitX=1.001;exitY=0.555;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=42.5;entryPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-26" target="z_KmcIXuTpUnLq9mAn68-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="539" y="455" as="sourcePoint" />
+            <mxPoint x="614" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;entryX=0.492;entryY=0.022;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-27" target="z_KmcIXuTpUnLq9mAn68-30">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="504" y="510" as="sourcePoint" />
+            <mxPoint x="399" y="678" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;exitX=0;exitY=0;exitDx=130;exitDy=27.5;exitPerimeter=0;entryX=0.536;entryY=0.978;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-30" target="z_KmcIXuTpUnLq9mAn68-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="504" y="530" as="sourcePoint" />
+            <mxPoint x="409" y="700" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="299" y="550" />
+              <mxPoint x="599" y="550" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z_KmcIXuTpUnLq9mAn68-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;exitX=0;exitY=0;exitDx=40;exitDy=0;exitPerimeter=0;entryX=0.693;entryY=1.015;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="z_KmcIXuTpUnLq9mAn68-29" target="z_KmcIXuTpUnLq9mAn68-28">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="450" as="sourcePoint" />
+            <mxPoint x="570" y="280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="570" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
